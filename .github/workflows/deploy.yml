@@ -1,0 +1,25 @@
+name: Deploy to Mender
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Mender Server
+        uses: appleboy/ssh-action@v1.0.0
+
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+
+          script: |
+            cd ~/projects/devops
+            git pull origin main
+            npm install
+            pm2 restart all
