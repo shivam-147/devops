@@ -7,7 +7,7 @@ const PORT = 3000
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send('shivam bathre server server running on port 3000')
+    res.send('shivam bathre server running on port 3000')
 })
 
 app.listen(PORT, () => {
